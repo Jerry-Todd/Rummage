@@ -12,9 +12,13 @@ export default function Viewer() {
   useEffect(() => {
     let cancelled = false;
 
+    // return () => {
+    //   cancelled = true;
+    // };
+
     scanFolder("/", true, (scan) => {
       if (!cancelled) setFiles(scan);
-    }, 3).then((scan) => {
+    }, 4).then((scan) => {
       if (!cancelled) {
         setFiles(scan);
         setIsScanning(false);
@@ -44,7 +48,7 @@ export default function Viewer() {
       </div>
       <div className="flex-1 min-w-0 flex flex-coljustify-center items-center">
         {/* pie chart */}
-        <DonutChart></DonutChart>
+        <DonutChart files={files}></DonutChart>
       </div>
     </div>
   );
